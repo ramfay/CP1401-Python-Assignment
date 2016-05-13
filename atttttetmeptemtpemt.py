@@ -75,13 +75,13 @@ def main():
                 print("Let's order a ticket! Is this ticket for you, or someone else?")
                 ticket_user = input(str("Enter 'M' if this ticket is for you, or 'S' if it is for someone else."))
                 if ticket_user == "S" or ticket_user == "s":
-                    ticket_name = get_username_string()
+                    """ ticket_name = get_username_string()
                     print("Ticket for " + ticket_name + "!")
                 elif ticket_user == "M" or ticker_user == "m":
                     ticket_name = username
                     print("Ticket for " + ticket_name + "!")
                 else:
-                    print("placeholder")
+                    print("placeholder") """
     else:
         print("Something went horribly wrong, sorry!")
 
