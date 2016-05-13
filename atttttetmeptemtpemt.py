@@ -61,7 +61,8 @@ def seat_type_string():
 
 
 def ticket_age_int():
-    print()
+    print("Please enter the age for the ticket holder."
+          "\n Note: only whole numbers will be accepted")
     age_input = int(input())
     return age_input
 
