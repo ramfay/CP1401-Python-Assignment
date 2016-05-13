@@ -1,4 +1,5 @@
 def get_username_string():
+    print("Please enter your first and last name.")
     username = input()
     return username
 
@@ -10,6 +11,12 @@ def menu_option_string():
           "\nTo quit, press 'Q'.")
     menu_input = input()
     return menu_input
+
+
+def get_username_string():
+    print("Please enter a first and last name for the person's ticket.")
+    ticket_name = input()
+    return ticket_name
 
 
 def trip_length_string():
@@ -36,20 +43,26 @@ def get_destination_return_string():
 
 
 def fare_type_string():
-    print()
+    print("Please select which class you would like for your travels by entering the corresponding code:"
+          "\nBusiness - $ (Code: B)"
+          "\nEconomy - $ (Code: E)"
+          "\nFrugal - $ (Code:F)")
     fare_input = input()
     return fare_input
 
 
 def seat_type_string():
-    print()
+    print("Please select which seat you would like to be seated in by entering the corresponding code:"
+          "\nWindow seat - $ (Code: W)"
+          "\nAisle seat - $ (Code: A)"
+          "\nMiddle seat - $ (Code: M)")
     seat_input = input()
     return seat_input
 
 
 def ticket_age_int():
     print()
-    age_input = input()
+    age_input = int(input())
     return age_input
 
 
@@ -73,7 +86,7 @@ def main():
                 print("BYE Felicia")
     elif menu_choice == "O" or menu_choice == "o":
                 print("Let's order a ticket! Is this ticket for you, or someone else?")
-                ticket_user = input(str("Enter 'M' if this ticket is for you, or 'S' if it is for someone else."))
+                ticket_user = str(input("Enter 'M' if this ticket is for you, or 'S' if it is for someone else."))
                 if ticket_user == "S" or ticket_user == "s":
                     """ ticket_name = get_username_string()
                     print("Ticket for " + ticket_name + "!")
