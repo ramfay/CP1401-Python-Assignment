@@ -81,7 +81,7 @@ def main():
                     ticket_name = username
                     print("Ticket for " + ticket_name + "!")
                 else:
-                    print("place")
+                    print("placeholder")
     else:
         print("Something went horribly wrong, sorry!")
 
