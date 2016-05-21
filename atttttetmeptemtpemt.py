@@ -13,10 +13,10 @@ def menu_option_string():
     return menu_input
 
 
-def get_username_string():
+"""def get_username_string():
     print("Please enter a first and last name for the person's ticket.")
     ticket_name = input()
-    return ticket_name
+    return ticket_name"""
 
 
 def trip_length_string():
@@ -69,7 +69,6 @@ def ticket_age_int():
 
 def main():
     print("Hello! Welcome to Tropical Airlines Ticketing Ordering System.")
-    print("Please enter your name.")
     username = get_username_string()
     print("Welcome " + username + "!")
     menu_choice = menu_option_string()
