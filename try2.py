@@ -1,15 +1,19 @@
 def get_username_string():
-    print("Please enter your first and last name.")
-    username = input()
+    username = int(input("Please enter your first and last name."))
     return username
 
 
 def menu_option_string():
-    print("This is the Tropical Airlines Ticket Ordering System."
+    menu_error = False
+    while menu_error == False:
+        menu_input = str(input("This is the Tropical Airlines Ticket Ordering System."
           "\nFor more information, press 'I'."
           "\nTo order a ticket, press 'O'."
-          "\nTo quit, press 'Q'.")
-    menu_input = input()
+          "\nTo quit, press 'Q'."))
+    if menu_input == "I" or "i" or "O" or "o" or "Q" or "q":
+        menu_error = True
+    else:
+        print("It seems you have not entered a valid option! That's okay, try again.")
     return menu_input
 
 
@@ -20,17 +24,27 @@ def menu_option_string():
 
 
 def trip_length_string():
-    print("For a one-way trip, please enter 'O."
-          "\nFor a return trip, please enter 'R'.")
-    trip_input = input()
+    trip_error = False
+    while trip_error == False:
+        trip_input = str(input("For a one-way trip, please enter 'O."
+          "\nFor a return trip, please enter 'R'."))
+    if trip_input == "O" or "o" or "R" or "r":
+        trip_error = True
+    else:
+        print("You have not specified a proper response! One more time.")
     return trip_input
 
 def get_destination_one_string():
-    print("Please type in the appropriate corresponding code for your destination:"
+    destination_one_error = False
+    while destination_one_error == False:
+        destination_one_input = str(input("Please type in the appropriate corresponding code for your destination:"
           "\nCairns - $250 (Code: C1) "
           "\nSydney - $420 (Code: S1)"
-          "\nPerth - $510 (Code: P1)")
-    destination_one_input = input()
+          "\nPerth - $510 (Code: P1)"))
+        if destination_one_input == "C1" or "c1" or "S1" or "s1" or "P1" or "p1":
+            destination_one_error = True
+        else:
+            print("Uh oh, please try again! Make sure you put in the correct code!")
     return destination_one_input
 
 def get_destination_return_string():
@@ -44,10 +58,6 @@ def get_destination_return_string():
             destination_error = True
         else:
             print("Oh dear, it appears you have made a mistake! Take 2, action.")
-    return destination_return_input
-
-
-    destination_return_input = input()
     return destination_return_input
 
 
@@ -84,7 +94,7 @@ def ticket_age_int():
     age_error = False
     while age_error == False:
         age_input = int(input("What is the age of the passenger?"))
-        if age_input > 0 and age_input <= 130:
+        if 0 >= age_input <= 116:
             age_error = True
         else:
             print("Please ensure you entered the correct age of the passenger")
