@@ -117,7 +117,8 @@ def get_seat_type():
         seat_type = seat_type.upper()
         if seat_type == "W" or seat_type == "A" or seat_type == "M":
             s_error = True
-        else: print("Are you sure you entered the correct letter? Here, try again.")
+        else:
+            print("Are you sure you entered the correct letter? Here, try again.")
 
 
 def get_age():
