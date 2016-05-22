@@ -42,13 +42,20 @@ def get_destination_return_string():
     return destination_return_input
 
 
-def fare_type_string():
-    print("Please select which class you would like for your travels by entering the corresponding code:"
+def fare_type_string_eg():
+    f_error = False
+    while f_error == False:
+        fare_input=str(input("Please select which class you would like for your travels by entering the corresponding code:"
           "\nBusiness - $ (Code: B)"
           "\nEconomy - $ (Code: E)"
-          "\nFrugal - $ (Code:F)")
-    fare_input = input()
-    return fare_input
+          "\nFrugal - $ (Code:F)"))
+        if fare_input == "B" or fare_input == "E" or fare_input == "F":
+            print("You have selected " + fare_input)
+            return fare_input
+        elif fare_input != "B" or fare_input != "E" or fare_input != "F":
+            print("error")
+        else:
+            print("idk tbh")
 
 
 def seat_type_string():
