@@ -16,6 +16,7 @@ LUCKY_WORD = "fluff"
 import random
 
 
+
 def get_username():
     username = input("Welcome! Please enter your first and last name:")
     return username
@@ -40,7 +41,7 @@ def get_menu():
                   "\nYou will be directed back to the menu now.")
         elif menu_choice == "Q":
             m_error = True
-            print("Thanks for visiting, bye!")
+            print("Thanks for visiting!")
         elif menu_choice == "O":
             return menu_choice
         elif menu_choice != "I" or menu_choice != "O" or menu_choice != "Q":
@@ -257,142 +258,127 @@ def calculate_total_fare(trip_destination, direction, seat, fare):
 
 
 def main():
-    # This gets the username for the person. This is also the name on the ticket if
-    # it is being ordered for themselves.
     username = get_username()
-    # Welcome user to the system.
     print("Pleased to see you, " + username + "! Welcome to Tropical Airlines Ticket Ordering System.")
-    # Calling the menu function. Only info and quit are handled in that function, order ticket
-    # is in main.
-    menu_choice = get_menu()
-    # Define a new list. This is what will be displayed to the user at the end.
-    final = []
-    # Order ticket begins.
-    if menu_choice == "O":
-        print("Let's order a ticket!")
-        # Error checking for whoever the ticket holder will be, using while loop / switch.
-        n_error = False
-        while not n_error:
-            who_dis = input("For whom is this ticket?"
-                            "\n(M)yself"
-                            "\n(S)omeone else")
-            # Convert response from lower to upper case.
-            # This is used throughout the program.
-            who_dis = who_dis.upper()
-            if who_dis == "M":
-                n_error = True
-                ticket_name = username
-                # Adding name to the list.
-                print("Ticket for: " + ticket_name + ".")
-            elif who_dis == "S":
-                n_error = True
-                ticket_name = input("Please enter the first and last name of the ticket holder:")
-                print("Ticket for: " + ticket_name + ".")
+    while True:
+        menu_choice = get_menu()
+        # Order ticket begins.
+        if menu_choice == "O":
+            print("Let's order a ticket!")
+            n_error = False
+            while not n_error:
+                who_dis = input("For whom is this ticket?"
+                                "\n(M)yself"
+                                "\n(S)omeone else")
+                who_dis = who_dis.upper()
+                if who_dis == "M":
+                    n_error = True
+                    ticket_name = username
+                    print("Ticket for: " + ticket_name + ".")
+                elif who_dis == "S":
+                    n_error = True
+                    ticket_name = input("Please enter the first and last name of the ticket holder:")
+                    print("Ticket for: " + ticket_name + ".")
+                else:
+                    print("Oh no, you've entered an unavailable option. Take 2, let's do that again!")
+            direction = get_trip_length()
+            if direction == "O":
+                trip_destination = get_dest_one()
+                # TODO - separate fn for get_destination()
+                if trip_destination == "C":
+                    print("You have selected Cairns.")
+                elif trip_destination == "S":
+                    print("You have selected Sydney.")
+                else:
+                    print("You have selected Perth.")
+            elif direction == "R":
+                trip_destination = get_dest_return()
+                if trip_destination == "C":
+                    print("You have selected Cairns.")
+                elif trip_destination == "S":
+                    print("You have selected Sydney.")
+                else:
+                    print("You have selected Perth.")
             else:
-                print("Oh no, you've entered an unavailable option. Take 2, let's do that again!")
-        direction = get_trip_length()
-        if direction == "O":
-            trip_destination = get_dest_one()
-            # TODO - separate fn for get_destination()
-            if trip_destination == "C":
-                print("You have selected Cairns.")
-            elif trip_destination == "S":
-                print("You have selected Sydney.")
+                print("How did you get here, honestly.")
+            seat = get_seat_type()
+            if seat == "W":
+                print("You have chosen the window seat. Enjoy the view!")
+            elif seat == "A":
+                print("You have chosen the aisle seat. Quicker route to the bathroom, good choice!")
             else:
-                print("You have selected Perth.")
-        elif direction == "R":
-            trip_destination = get_dest_return()
-            if trip_destination == "C":
-                print("You have selected Cairns.")
-            elif trip_destination == "S":
-                print("You have selected Sydney.")
+                print("You have chosen the middle seat. Hope you like making new friends!")
+            fare = get_fare_type()
+            if fare == "B":
+                print("You have selected business class. Fancy.")
+            elif fare == "E":
+                print("You have selected economy class. Economical!")
             else:
-                print("You have selected Perth.")
+                print("You have selected frugal. It's free!")
+            age = get_age()
+            if age <= 16:
+                print("You are eligible for a 50% discount! Yay!")
+            else:
+                print("Sorry, you do not qualify for the children's discount.")
+
+            thing = calculate_total_fare(trip_destination, direction, seat, fare)
+            if age <= 16:
+                thing *= 0.5
+            else:
+                pass
+            print("Total cost of trip is $" + str(thing) + ".")
+
+            # some fun because I feel bad for handing this in late.
+            words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
+            discount = (random.choice(words))
+            if discount == LUCKY_WORD:
+                print("Congratulations! You have received a random discount."
+                      "\nYou now get 30% off your total cost.")
+                thing *= 0.3
+                print("Your discounted fare is $" + str(thing) + ".")
+            else:
+                print("Gadzooks! You have missed out on our random discount."
+                      "\nOrder another ticket, and see if you get it next time.")
+        print("Here you are: "
+              "\nTicket for: " + ticket_name + ".")
+        if trip_destination == "C" and direction == "O":
+            trip_destination = "Cairns, one way"
+        elif trip_destination == "C" and direction == "R":
+            trip_destination = "Cairns, return"
+        elif trip_destination == "S" and direction == "O":
+            trip_destination = "Sydney, one way"
+        elif trip_destination == "S" and direction == "R":
+            trip_destination = "Sydney, return"
+        elif trip_destination == "P" and direction == "O":
+            trip_destination = "Perth, one way"
+        elif trip_destination == "P" and direction == "R":
+            trip_destination = "Perth, return"
         else:
-            print("How did you get here, honestly.")
-        seat = get_seat_type()
+            print("Invalid (printing trip destination)")
+        print("Destination: " + trip_destination + ".")
         if seat == "W":
-            print("You have chosen the window seat. Enjoy the view!")
+            seat = "Window seat"
         elif seat == "A":
-            print("You have chosen the aisle seat. Quicker route to the bathroom, good choice!")
+            seat = "Aisle seat"
+        elif seat == "M":
+            seat = "Middle seat"
         else:
-            print("You have chosen the middle seat. Hope you like making new friends!")
-        fare = get_fare_type()
+            print("Invalid (printing seat)")
+        print("Seat: " + seat + ".")
         if fare == "B":
-            print("You have selected business class. Fancy.")
+            fare = "Business class"
         elif fare == "E":
-            print("You have selected economy class. Economical!")
+            fare = "Economy class"
+        elif fare == "F":
+            fare = "Frugal class"
         else:
-            print("You have selected frugal. It's free!")
-        age = get_age()
-        if age <= 16:
-            print("You are eligible for a 50% discount! Yay!")
-        else:
-            print("Sorry, you do not qualify for the children's discount.")
+            print("Invalid (printing fare)")
+        print("Class: " + fare + "."
+              "\nAge: " + str(age) + "."
+              "\nThanks for buying with Tropical Airlines. You will now be redirected to the menu.")
+        continue
 
-        thing = calculate_total_fare(trip_destination, direction, seat, fare)
-        if age <= 16:
-            thing *= 0.5
-        else:
-            pass
-        print("Total cost of trip is $" + str(thing) + ".")
 
-        # some fun because I feel bad for handing this in late.
-        words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
-        discount = (random.choice(words))
-        if discount == LUCKY_WORD:
-            print("Congratulations! You have received a random discount."
-                  "\nYou now get 30% off your total cost.")
-            thing *= 0.3
-            print("Your discounted fare is $" + str(thing) + ".")
-        else:
-            print("Gadzooks! You have missed out on our random discount."
-                  "\nOrder another ticket, and see if you get it next time.")
-    print("Here you are: "
-          "\nTicket for: " + ticket_name + ".")
-    if trip_destination == "C" and direction == "O":
-        trip_destination = "Cairns, one way"
-    elif trip_destination == "C" and direction == "R":
-        trip_destination = "Cairns, return"
-    elif trip_destination == "S" and direction == "O":
-        trip_destination = "Sydney, one way"
-    elif trip_destination == "S" and direction == "R":
-        trip_destination = "Sydney, return"
-    elif trip_destination == "P" and direction == "O":
-        trip_destination = "Perth, one way"
-    elif trip_destination == "P" and direction == "R":
-        trip_destination = "Perth, return"
-    else:
-        print("Invalid (printing trip destination)")
-    print("Destination: " + trip_destination + ".")
-    if seat == "W":
-        seat = "Window seat"
-    elif seat == "A":
-        seat = "Aisle seat"
-    elif seat == "M":
-        seat = "Middle seat"
-    else:
-        print("Invalid (printing seat)")
-    print("Seat: " + seat + ".")
-    if fare == "B":
-        fare = "Business class"
-    elif fare == "E":
-        fare = "Economy class"
-    elif fare == "F":
-        fare = "Frugal class"
-    else:
-        print("Invalid (printing fare)")
-    print("Class: " + fare + "."
-          "\nAge: " + str(age) + "."
-          "\nThanks for buying with Tropical Airlines. You will now be redirected \nto the menu.")
-    print("This is the Tropical Airlines Ticket Ordering System."
-                               "\nFor more information, press 'I'."
-                               "\nTo order a ticket, press 'O'."
-                               "\nTo quit, press 'Q'.")
-    choice = input().upper()
-    while choice !=
-
-    print(final)
 
 
 main()
