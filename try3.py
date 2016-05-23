@@ -135,6 +135,15 @@ def get_age():
             return age
 
 
+def calculate_total_fare(trip_destination,  direction, seat, fare, age):
+    if trip_destination == "C" and direction == "O":
+        total_fare = C1
+    else:
+        total_fare = P2
+    return total_fare
+
+
+
 def main():
     # This gets the username for the person. This is also the name on the ticket if
     # it is being ordered for themselves.
@@ -151,7 +160,7 @@ def main():
         print("Let's order a ticket!")
         # Error checking for whoever the ticket holder will be, using while loop / switch.
         n_error = False
-        while n_error == False:
+        while not n_error:
             who_dis = input("For whom is this ticket?"
                    "\n(M)yself"
                    "\n(S)omeone else")
@@ -169,16 +178,17 @@ def main():
                 print("Ticket for: " + ticket_name + ".")
             else:
                 print("Oh no, you've entered an unavailable option. Take 2, let's do that again!")
-        trip = get_trip_length()
-        if trip == "O":
+        direction = get_trip_length()
+        if direction == "O":
             trip_destination = get_dest_one()
+            # TODO - separate fn for get_destination()
             if trip_destination == "C":
                 print("You have selected Cairns.")
             elif trip_destination == "S":
                 print("You have selected Sydney.")
             else:
                 print("You have selected Perth.")
-        elif trip == "R":
+        elif direction == "R":
             trip_destination = get_dest_return()
             if trip_destination == "C":
                 print("You have selected Cairns.")
@@ -207,15 +217,19 @@ def main():
             print("You are eligible for a 50% discount! Yay!")
         else:
             print("Sorry, you do not qualify for the children's discount.")
+
+        # TODO
+        total_fare = calculate_total_fare(trip_destination, direction, seat, fare, age)
+        print(total_fare)
         # some fun because I feel bad for handing this in late.
-        words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
-        discount = (random.choice(words))
-        if discount == LUCKY_WORD:
-            print("Congratulations! You have received a random discount."
-                  "\nYou now get 30% off your total cost.")
-        else:
-            print("Gadzooks! You have missed out on our random discount."
-                  "\nOrder another ticket, and see if you get it next time.")
+        # words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
+        # discount = (random.choice(words))
+        # if discount == LUCKY_WORD:
+        #     print("Congratulations! You have received a random discount."
+        #           "\nYou now get 30% off your total cost.")
+        # else:
+        #     print("Gadzooks! You have missed out on our random discount."
+        #           "\nOrder another ticket, and see if you get it next time.")
     print (final)
 
 main()

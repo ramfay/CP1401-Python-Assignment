@@ -75,30 +75,18 @@ def get_order():
         trip_destination = get_dest_one()
         if trip_destination == "C":
             print("You have selected Cairns.")
-            destination_cost = 250
-            return destination_cost
         elif trip_destination == "S":
             print("You have selected Sydney.")
-            destination_cost = 420
-            return destination_cost
         else:
             print("You have selected Perth.")
-            destination_cost = 510
-            return destination_cost
     elif trip == "R":
         trip_destination = get_dest_return()
         if trip_destination == "C":
             print("You have selected Cairns.")
-            destination_cost = 400
-            return destination_cost
         elif trip_destination == "S":
             print("You have selected Sydney.")
-            destination_cost = 575
-            return destination_cost
         else:
             print("You have selected Perth.")
-            destination_cost = 700
-            return destination_cost
     else:
         print("How did you get here, honestly.")
     fare = get_fare_type()
@@ -135,6 +123,7 @@ def get_order():
     else:
         print("Gadzooks! You have missed out on our random discount."
               "\nOrder another ticket, and see if you get it next time.")
+    return destination_cost
 
 
 def get_trip_length():
@@ -236,8 +225,7 @@ def main():
     final = []
     # Order ticket begins.
     if menu_choice == "O":
-        order = get_order()
-        print(order)
+        get_order()
     print (final)
 
 main()
