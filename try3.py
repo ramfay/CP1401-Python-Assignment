@@ -31,12 +31,12 @@ def get_menu():
         menu_choice = menu_choice.upper()
         if menu_choice == "I":
             print("Welcome to Tropical Airlines! Thanks for choosing us for "
-                      "\nyour travel needs."
-                      "\nIn this ticket ordering system, we'll ask a few quick questions "
-                      "\nregarding the type of ticket you would like,"
-                      "\nincluding destination information. Please press the corresponding letter key on your "
-                      "\nkeyboard when you are prompted - it's as easy as that!"
-                      "\nWe are also currently offering 50% discounted fares for children!"
+                  "\nyour travel needs."
+                  "\nIn this ticket ordering system, we'll ask a few quick questions "
+                  "\nregarding the type of ticket you would like,"
+                  "\nincluding destination information. Please press the corresponding letter key on your "
+                  "\nkeyboard when you are prompted - it's as easy as that!"
+                  "\nWe are also currently offering 50% discounted fares for children!"
                   "\nYou will be directed back to the menu now.")
         elif menu_choice == "Q":
             m_error = True
@@ -53,8 +53,8 @@ def get_trip_length():
     t_error = False
     while t_error == False:
         o_r = input("Is this trip:"
-                "\n(O)ne way or"
-                "\n(R)eturn?")
+                    "\n(O)ne way or"
+                    "\n(R)eturn?")
         o_r = o_r.upper()
         if (o_r == "O") or (o_r == "R"):
             t_error = True
@@ -121,6 +121,7 @@ def get_seat_type():
             s_error = True
         else:
             print("Are you sure you entered the correct letter? Here, try again.")
+    return seat_type
 
 
 def get_age():
@@ -129,19 +130,130 @@ def get_age():
         age = int(input("What is the age of the passenger?"))
         if 0 >= age <= 116:
             a_error = True
-        elif 0 <= age >= 116:
+        elif 0 <= age >= 116 or age == "":
             print("It seems like it's not physically possible to be that age! Please try again.")
         else:
             return age
 
 
-def calculate_total_fare(trip_destination,  direction, seat, fare, age):
-    if trip_destination == "C" and direction == "O":
-        total_fare = C1
+def calculate_total_fare(trip_destination, direction, seat, fare):
+    # Cairns one way
+    if trip_destination == "C" and direction == "O" and seat == "W" and fare == "B":
+        total_fare = C1 + WINDOW + BUSINESS
+    elif trip_destination == "C" and direction == "O" and seat == "W" and fare == "E":
+        total_fare = C1 + WINDOW + ECONOMY
+    elif trip_destination == "C" and direction == "O" and seat == "W" and fare == "F":
+        total_fare = C1 + WINDOW + FRUGAL
+    elif trip_destination == "C" and direction == "O" and seat == "A" and fare == "B":
+        total_fare = C1 + AISLE + BUSINESS
+    elif trip_destination == "C" and direction == "O" and seat == "A" and fare == "E":
+        total_fare = C1 + AISLE + ECONOMY
+    elif trip_destination == "C" and direction == "O" and seat == "A" and fare == "F":
+        total_fare = C1 + AISLE + FRUGAL
+    elif trip_destination == "C" and direction == "O" and seat == "M" and fare == "B":
+        total_fare = C1 + MIDDLE + BUSINESS
+    elif trip_destination == "C" and direction == "O" and seat == "M" and fare == "E":
+        total_fare = C1 + MIDDLE + ECONOMY
+    elif trip_destination == "C" and direction == "O" and seat == "M" and fare == "F":
+        total_fare = C1 + MIDDLE + FRUGAL
+    # Cairns return
+    elif trip_destination == "C" and direction == "R" and seat == "W" and fare == "B":
+        total_fare = C2 + WINDOW + BUSINESS
+    elif trip_destination == "C" and direction == "R" and seat == "W" and fare == "E":
+        total_fare = C2 + WINDOW + ECONOMY
+    elif trip_destination == "C" and direction == "R" and seat == "W" and fare == "F":
+        total_fare = C2 + WINDOW + FRUGAL
+    elif trip_destination == "C" and direction == "R" and seat == "A" and fare == "B":
+        total_fare = C2 + AISLE + BUSINESS
+    elif trip_destination == "C" and direction == "R" and seat == "A" and fare == "E":
+        total_fare = C2 + AISLE + ECONOMY
+    elif trip_destination == "C" and direction == "R" and seat == "A" and fare == "F":
+        total_fare = C2 + AISLE + FRUGAL
+    elif trip_destination == "C" and direction == "R" and seat == "M" and fare == "B":
+        total_fare = C2 + MIDDLE + BUSINESS
+    elif trip_destination == "C" and direction == "R" and seat == "M" and fare == "E":
+        total_fare = C2 + MIDDLE + ECONOMY
+    elif trip_destination == "C" and direction == "R" and seat == "M" and fare == "F":
+        total_fare = C2 + MIDDLE + FRUGAL
+    # Syd one way
+    elif trip_destination == "S" and direction == "O" and seat == "W" and fare == "B":
+        total_fare = S1 + WINDOW + BUSINESS
+    elif trip_destination == "S" and direction == "O" and seat == "W" and fare == "E":
+        total_fare = S1 + WINDOW + ECONOMY
+    elif trip_destination == "S" and direction == "O" and seat == "W" and fare == "F":
+        total_fare = S1 + WINDOW + FRUGAL
+    elif trip_destination == "S" and direction == "O" and seat == "A" and fare == "B":
+        total_fare = S1 + AISLE + BUSINESS
+    elif trip_destination == "S" and direction == "O" and seat == "A" and fare == "E":
+        total_fare = S1 + AISLE + BUSINESS
+    elif trip_destination == "S" and direction == "O" and seat == "A" and fare == "F":
+        total_fare = S1 + AISLE + FRUGAL
+    elif trip_destination == "S" and direction == "O" and seat == "M" and fare == "B":
+        total_fare = S1 + MIDDLE + BUSINESS
+    elif trip_destination == "S" and direction == "O" and seat == "M" and fare == "E":
+        total_fare = S1 + MIDDLE + ECONOMY
+    elif trip_destination == "S" and direction == "O" and seat == "M" and fare == "F":
+        total_fare = S1 + MIDDLE + FRUGAL
+    # Syd return
+    elif trip_destination == "S" and direction == "R" and seat == "W" and fare == "B":
+        total_fare = S2 + WINDOW + BUSINESS
+    elif trip_destination == "S" and direction == "R" and seat == "W" and fare == "E":
+        total_fare = S2 + WINDOW + ECONOMY
+    elif trip_destination == "S" and direction == "R" and seat == "W" and fare == "F":
+        total_fare = S2 + WINDOW + FRUGAL
+    elif trip_destination == "S" and direction == "R" and seat == "A" and fare == "B":
+        total_fare = S2 + AISLE + BUSINESS
+    elif trip_destination == "S" and direction == "R" and seat == "A" and fare == "E":
+        total_fare = S2 + AISLE + ECONOMY
+    elif trip_destination == "S" and direction == "R" and seat == "A" and fare == "F":
+        total_fare = S2 + AISLE + FRUGAL
+    elif trip_destination == "S" and direction == "R" and seat == "M" and fare == "B":
+        total_fare = S2 + MIDDLE + BUSINESS
+    elif trip_destination == "S" and direction == "R" and seat == "M" and fare == "E":
+        total_fare = S2 + MIDDLE + ECONOMY
+    elif trip_destination == "S" and direction == "R" and seat == "M" and fare == "F":
+        total_fare = S2 + MIDDLE + FRUGAL
+    # Perth one way
+    elif trip_destination == "P" and direction == "O" and seat == "W" and fare == "B":
+        total_fare = P1 + WINDOW + BUSINESS
+    elif trip_destination == "P" and direction == "O" and seat == "W" and fare == "E":
+        total_fare = P1 + WINDOW + ECONOMY
+    elif trip_destination == "P" and direction == "O" and seat == "W" and fare == "F":
+        total_fare = P1 + WINDOW + FRUGAL
+    elif trip_destination == "P" and direction == "O" and seat == "A" and fare == "B":
+        total_fare = P1 + AISLE + BUSINESS
+    elif trip_destination == "P" and direction == "O" and seat == "A" and fare == "E":
+        total_fare = P1 + AISLE + BUSINESS
+    elif trip_destination == "P" and direction == "O" and seat == "A" and fare == "F":
+        total_fare = P1 + AISLE + FRUGAL
+    elif trip_destination == "P" and direction == "O" and seat == "M" and fare == "B":
+        total_fare = P1 + MIDDLE + BUSINESS
+    elif trip_destination == "P" and direction == "O" and seat == "M" and fare == "E":
+        total_fare = P1 + MIDDLE + ECONOMY
+    elif trip_destination == "P" and direction == "O" and seat == "M" and fare == "F":
+        total_fare = P1 + MIDDLE + FRUGAL
+    # Perth return
+    elif trip_destination == "P" and direction == "R" and seat == "W" and fare == "B":
+        total_fare = P2 + WINDOW + BUSINESS
+    elif trip_destination == "P" and direction == "R" and seat == "W" and fare == "E":
+        total_fare = P2 + WINDOW + ECONOMY
+    elif trip_destination == "P" and direction == "R" and seat == "W" and fare == "F":
+        total_fare = P2 + WINDOW + FRUGAL
+    elif trip_destination == "P" and direction == "R" and seat == "A" and fare == "B":
+        total_fare = P2 + AISLE + BUSINESS
+    elif trip_destination == "P" and direction == "R" and seat == "A" and fare == "E":
+        total_fare = P2 + AISLE + ECONOMY
+    elif trip_destination == "P" and direction == "R" and seat == "A" and fare == "F":
+        total_fare = P2 + AISLE + FRUGAL
+    elif trip_destination == "P" and direction == "R" and seat == "M" and fare == "B":
+        total_fare = P2 + MIDDLE + BUSINESS
+    elif trip_destination == "P" and direction == "R" and seat == "M" and fare == "E":
+        total_fare = P2 + MIDDLE + ECONOMY
+    elif trip_destination == "P" and direction == "R" and seat == "M" and fare == "F":
+        total_fare = P2 + MIDDLE + FRUGAL
     else:
-        total_fare = P2
+        print("Invalid (fare)")
     return total_fare
-
 
 
 def main():
@@ -162,8 +274,8 @@ def main():
         n_error = False
         while not n_error:
             who_dis = input("For whom is this ticket?"
-                   "\n(M)yself"
-                   "\n(S)omeone else")
+                            "\n(M)yself"
+                            "\n(S)omeone else")
             # Convert response from lower to upper case.
             # This is used throughout the program.
             who_dis = who_dis.upper()
@@ -198,13 +310,6 @@ def main():
                 print("You have selected Perth.")
         else:
             print("How did you get here, honestly.")
-        fare = get_fare_type()
-        if fare == "B":
-            print("You have selected business class. Fancy.")
-        elif fare == "E":
-            print("You have selected economy class. Economical!")
-        else:
-            print("You have selected frugal. It's free!")
         seat = get_seat_type()
         if seat == "W":
             print("You have chosen the window seat. Enjoy the view!")
@@ -212,24 +317,82 @@ def main():
             print("You have chosen the aisle seat. Quicker route to the bathroom, good choice!")
         else:
             print("You have chosen the middle seat. Hope you like making new friends!")
+        fare = get_fare_type()
+        if fare == "B":
+            print("You have selected business class. Fancy.")
+        elif fare == "E":
+            print("You have selected economy class. Economical!")
+        else:
+            print("You have selected frugal. It's free!")
         age = get_age()
         if age <= 16:
             print("You are eligible for a 50% discount! Yay!")
         else:
             print("Sorry, you do not qualify for the children's discount.")
 
-        # TODO
-        total_fare = calculate_total_fare(trip_destination, direction, seat, fare, age)
-        print(total_fare)
+        thing = calculate_total_fare(trip_destination, direction, seat, fare)
+        if age <= 16:
+            thing *= 0.5
+        else:
+            pass
+        print("Total cost of trip is $" + str(thing) + ".")
+
         # some fun because I feel bad for handing this in late.
-        # words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
-        # discount = (random.choice(words))
-        # if discount == LUCKY_WORD:
-        #     print("Congratulations! You have received a random discount."
-        #           "\nYou now get 30% off your total cost.")
-        # else:
-        #     print("Gadzooks! You have missed out on our random discount."
-        #           "\nOrder another ticket, and see if you get it next time.")
-    print (final)
+        words = ['hammer', 'fluff', 'bongos', 'dog ', 'pupper', 'shepherd']
+        discount = (random.choice(words))
+        if discount == LUCKY_WORD:
+            print("Congratulations! You have received a random discount."
+                  "\nYou now get 30% off your total cost.")
+            thing *= 0.3
+            print("Your discounted fare is $" + str(thing) + ".")
+        else:
+            print("Gadzooks! You have missed out on our random discount."
+                  "\nOrder another ticket, and see if you get it next time.")
+    print("Here you are: "
+          "\nTicket for: " + ticket_name + ".")
+    if trip_destination == "C" and direction == "O":
+        trip_destination = "Cairns, one way"
+    elif trip_destination == "C" and direction == "R":
+        trip_destination = "Cairns, return"
+    elif trip_destination == "S" and direction == "O":
+        trip_destination = "Sydney, one way"
+    elif trip_destination == "S" and direction == "R":
+        trip_destination = "Sydney, return"
+    elif trip_destination == "P" and direction == "O":
+        trip_destination = "Perth, one way"
+    elif trip_destination == "P" and direction == "R":
+        trip_destination = "Perth, return"
+    else:
+        print("Invalid (printing trip destination)")
+    print("Destination: " + trip_destination + ".")
+    if seat == "W":
+        seat = "Window seat"
+    elif seat == "A":
+        seat = "Aisle seat"
+    elif seat == "M":
+        seat = "Middle seat"
+    else:
+        print("Invalid (printing seat)")
+    print("Seat: " + seat + ".")
+    if fare == "B":
+        fare = "Business class"
+    elif fare == "E":
+        fare = "Economy class"
+    elif fare == "F":
+        fare = "Frugal class"
+    else:
+        print("Invalid (printing fare)")
+    print("Class: " + fare + "."
+          "\nAge: " + str(age) + "."
+          "\nThanks for buying with Tropical Airlines. You will now be redirected \nto the menu.")
+    print("This is the Tropical Airlines Ticket Ordering System."
+                               "\nFor more information, press 'I'."
+                               "\nTo order a ticket, press 'O'."
+                               "\nTo quit, press 'Q'.")
+    choice = input().upper()
+    while choice !=
+
+    print(final)
+
 
 main()
